@@ -8,5 +8,6 @@ toDoButton.addEventListener("click", (e) => {
 //     e.target.style.color = black ? e.target.style.color = grey;
 // })
 ol.appendChild(li)
+input.value = ''
 
 })
