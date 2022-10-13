@@ -63,7 +63,7 @@
   }
   
   .toDoList {
-    min-width: 30%;
+    min-width: 40%;
     list-style: none;
   }
   
@@ -73,7 +73,7 @@
     color: black;
     font-size: 1.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     transition: all 0.9s ease;
   }
@@ -81,12 +81,14 @@
   .todo li {
     flex: 1;
   }
+
+ 
   
   .complete-btn {
     background: #ff6f47;
     color: white;
     border: none;
-    padding: 1rem;
+    padding: 0.5rem;
     cursor: pointer;
     font-size: 1rem;
   }
@@ -94,9 +96,31 @@
   
   .todo-item {
     padding: 0rem 0.5rem;
+    
   }
   
-  
+  /*   buttons in the list */
+  .done-btn {
+    font-size:3em;
+    border: none;
+    background: #ff6f47;
+    color: white;
+    padding: 0.2rem;
+  }
+  .delete-btn{
+     font-size:1.5em;
+     border: none;
+     background: #ff6f47;
+    color: white;
+    padding: 0.2rem;
+  }
+  .edit-btn{
+    font-size:2.7em;
+    border: none;
+    background: #ff6f47;
+    color: white;
+    padding: 0.2rem;
+  }
   
   select {
     -webkit-appearence: none;
