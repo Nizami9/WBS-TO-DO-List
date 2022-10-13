@@ -12,6 +12,6 @@ toDoButton.addEventListener("click", (e) => {
 //     e.target.style.color = black ? e.target.style.color = grey;
 // })
 toDoList.appendChild(li)
-input.value = ''
+toDoInput.value = '';
 
 })
