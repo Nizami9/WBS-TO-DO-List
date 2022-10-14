@@ -6,10 +6,17 @@ const toDoList = document.querySelector('.toDoList')
 
 
 // Done button
-const doneBtnCreator = () => {
+const doneBtnCreator = (e) => {
+   
+    //  if(e.target.style.textDecorationLine === "line-through" ) {
+    //     console.log('inside done'+e);
+    //     e.target.style.opacity = '0%';
+    //     e.target.style.textDecorationLine = "none";
+        
+    //  }
+
     const doneBtn = document.createElement('button');
-    //doneBtn.class="done-btn";
-    doneBtn.innerHTML = '<i class="fa done-btn btn-flex">&#xf00c;</i>';
+    doneBtn.innerHTML = '<i class="fa done-btn ">&#xf00c;</i>';
 
     doneBtn.addEventListener('click', (e) => {
         const doneItem = e.target.parentElement.parentElement;
@@ -23,8 +30,7 @@ const doneBtnCreator = () => {
 // Edit Button 
 const editBtnCreator = () => {
     const editBtn = document.createElement('button');
-    //editBtn.className = "edit-btn";
-    editBtn.innerHTML = "<i class='fas fa-pen edit-btn btn-flex'></i>"
+    editBtn.innerHTML = "<i class='fas fa-pen edit-btn '></i>"
 
     // here comes the logic for edit 
 
@@ -38,12 +44,11 @@ const editBtnCreator = () => {
 const deleteBtnCreator = () => {
     const deleteBtn = document.createElement('button');
     deleteBtn.className = "delete-btn";
-    deleteBtn.innerHTML = '<i  class="fa btn-flex " >&#xf014;</i>';
+    deleteBtn.innerHTML = '<i  class="fa " >&#xf014;</i>';
     console.log(deleteBtn);
 
     deleteBtn.addEventListener('click', (e) => {
         const deletedItem = e.target.parentElement.parentElement;
-
         toDoList.removeChild(deletedItem);
     });
     return deleteBtn;
@@ -63,7 +68,7 @@ toDoButton.addEventListener("click", (e) => {
     li.className = "todo-item"
 
     div.appendChild(li);
-    div.appendChild(doneBtnCreator());
+    div.appendChild(doneBtnCreator(e));
     div.appendChild(editBtnCreator());
     div.appendChild(deleteBtnCreator());
     toDoList.appendChild(div);
