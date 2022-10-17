@@ -2,17 +2,20 @@
 const toDoButton = document.querySelector('.toDoButton');
 const toDoInput = document.querySelector('.toDoInput')
 const toDoList = document.querySelector('.toDoList')
+const editBtn = document.querySelector('.toDoList')
+
+
 
 
 
 // Done button
 const doneBtnCreator = (e) => {
-   
+
     //  if(e.target.style.textDecorationLine === "line-through" ) {
     //     console.log('inside done'+e);
     //     e.target.style.opacity = '0%';
     //     e.target.style.textDecorationLine = "none";
-        
+
     //  }
 
     const doneBtn = document.createElement('button');
@@ -28,15 +31,25 @@ const doneBtnCreator = (e) => {
 
 
 // Edit Button 
-const editBtnCreator = () => {
-    const editBtn = document.createElement('button');
-    editBtn.innerHTML = "<i class='fas fa-pen edit-btn '></i>"
+// const editBtnCreator = () => {
+//     const editBtn = document.createElement('button');
+//     editBtn.innerHTML = "<i class='fas fa-pen edit-btn '></i>"
 
-    // here comes the logic for edit 
+//     // here comes the logic for edit 
+
+//     editBtn.addEventListener("dblclick", function () {
+
+//         toDoList.contentEditable = true;
 
 
-    return editBtn;
-}
+//     });
+
+
+//     editBtn.addEventListener("click", function () {
+//         toDoList.contentEditable = false;
+//     });
+//     return editBtn;
+// }
 
 
 
