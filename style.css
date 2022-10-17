@@ -5,7 +5,9 @@
   }
   
   body {
-    background-image: linear-gradient(120deg, #e2c35d, #d88771);
+    background-image: url(./img/matheo-jbt-BP0RBHQZMcI-unsplash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
     color: White;
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
