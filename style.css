@@ -5,10 +5,12 @@
   }
   
   body {
-    background-image: linear-gradient(120deg, #e2c35d, #d88771);
+    background-image: url(./img/andy-holmes-rCbdp8VCYhQ-unsplash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
     color: White;
     font-family: "Poppins", sans-serif;
-    min-height: 100vh;
+    height: 100vh;
     text-align: center;
   }
   
@@ -164,3 +166,13 @@
       max-width: 90%;
     }
   }
+  .copyright a{color: white;
+ }
+ .copyright {
+  font-size: 0.6rem;
+  position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+ }
