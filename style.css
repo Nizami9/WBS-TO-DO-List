@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
     color: White;
     font-family: "Poppins", sans-serif;
-    min-height: 100vh;
+    height: 100vh;
     text-align: center;
   }
   
@@ -166,3 +166,13 @@
       max-width: 90%;
     }
   }
+  .copyright a{color: white;
+ }
+ .copyright {
+  font-size: 0.6rem;
+  position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+ }
