@@ -2,7 +2,8 @@
 const toDoButton = document.querySelector('.toDoButton');
 const toDoInput = document.querySelector('.toDoInput')
 const toDoList = document.querySelector('.toDoList')
-const editBtn = document.querySelector('.toDoList')
+//const editBtn = document.querySelector('.toDoList')
+const filter=document.querySelector(".toDoFilter")
 
 
 
@@ -19,12 +20,14 @@ const doneBtnCreator = (e) => {
     //  }
 
     const doneBtn = document.createElement('button');
-    doneBtn.innerHTML = '<i class="fa done-btn ">&#xf00c;</i>';
-
+    doneBtn.innerHTML = '<i class="fa ">&#xf00c;</i>';
+     doneBtn.className="done-btn";
     doneBtn.addEventListener('click', (e) => {
         const doneItem = e.target.parentElement.parentElement;
+        doneItem.classList.toggle="done";
         doneItem.style.opacity = '40%';
         doneItem.style.textDecorationLine = "line-through";
+        
     });
     return doneBtn;
 }
@@ -38,10 +41,7 @@ const doneBtnCreator = (e) => {
 //     // here comes the logic for edit 
 
 //     editBtn.addEventListener("dblclick", function () {
-
 //         toDoList.contentEditable = true;
-
-
 //     });
 
 
@@ -68,6 +68,7 @@ const deleteBtnCreator = () => {
 }
 
 
+
 toDoButton.addEventListener("click", (e) => {
     e.preventDefault();
     if (!toDoInput.value) {
@@ -89,3 +90,42 @@ toDoButton.addEventListener("click", (e) => {
     toDoInput.value = '';
 
 })
+
+
+// function for dropdown 
+filter.addEventListener("click", (e) => {
+     e.preventDefault();
+     const todoItems= toDoList.childNodes;
+     console.log(todoItems);
+
+     todoItems.forEach(item => {
+        console.log("inside forEach ,,,,")
+        console.log(item.classList);
+        console.log(item.classList.toggle);
+           switch(e.target.value){
+             case ('all') : item.style.display='flex';
+                            break;
+                     
+             case ('done') : 
+                if(item.classList.toggle === 'done'){
+                    item.style.display='flex';
+                    break;
+                }
+                else{
+                    item.style.display='none';
+                    break;
+                }
+            case ('inprogress'):   
+                if(item.classList.toggle === 'done'){
+                    item.style.display='none';
+                    break;
+            }
+            else{
+                    item.style.display='flex';
+                    break;
+            } 
+                }
+
+     })
+})
+
