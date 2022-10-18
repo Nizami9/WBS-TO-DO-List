@@ -132,7 +132,7 @@
   
   select {
     -webkit-appearence: none;
-    /* -moz-appearance: none; */
+    -moz-appearance: none;
     outline: none;
     border: none;
     color: #ff6f47;
