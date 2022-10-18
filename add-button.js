@@ -41,10 +41,7 @@ const doneBtnCreator = (e) => {
 //     // here comes the logic for edit 
 
 //     editBtn.addEventListener("dblclick", function () {
-
 //         toDoList.contentEditable = true;
-
-
 //     });
 
 
@@ -71,6 +68,7 @@ const deleteBtnCreator = () => {
 }
 
 
+
 toDoButton.addEventListener("click", (e) => {
     e.preventDefault();
     if (!toDoInput.value) {
@@ -94,6 +92,7 @@ toDoButton.addEventListener("click", (e) => {
 })
 
 
+// function for dropdown 
 filter.addEventListener("click", (e) => {
      e.preventDefault();
      const todoItems= toDoList.childNodes;
@@ -128,24 +127,5 @@ filter.addEventListener("click", (e) => {
                 }
 
      })
-
-       
-   
-        // todoItems.forEach(item =>{  
-        //      if(item.classList.includes('done')){
-        //         console.log("donnnnnnn")
-        //      }
-        //     else{
-        //            console.log("NOOOOOtttttt DONE     ")
-        //        // item.style.display='none';
-
-        //     }
-            
-        // })
-        
-       
-     
-
-
 })
 
