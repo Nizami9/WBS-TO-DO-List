@@ -23,10 +23,8 @@ const doneBtnCreator = (e) => {
     doneBtn.innerHTML = '<i class="fa ">&#xf00c;</i>';
      doneBtn.className="done-btn";
     doneBtn.addEventListener('click', (e) => {
-        const doneItem1=e.target.parentElement;
         const doneItem = e.target.parentElement.parentElement;
         doneItem.classList.toggle="done";
-        console.log(doneItem1)
         doneItem.style.opacity = '40%';
         doneItem.style.textDecorationLine = "line-through";
         
