@@ -1,9 +1,3 @@
-var elements = [];
-window.onload = function() {
-  if (JSON.parse(localStorage.getItem("elements")) != null)
-    elements = JSON.parse(localStorage.getItem("elements"));
-  console.log(elements);
-
 const toDoButton = document.querySelector('.toDoButton');
 const toDoInput = document.querySelector('.toDoInput')
 const toDoList = document.querySelector('.toDoList')
@@ -106,12 +100,7 @@ toDoButton.addEventListener("click", (e) => {
     toDoInput.value = '';
 if (document.querySelector(".addTxt").value.trim() != "") {
     elements.push(document.querySelector(".addTxt").value.trim());
-    if (localStorage.getItem("elements") == null) {
-      localStorage.setItem("elements", JSON.stringify(elements));
-    } else {
-      localStorage.setItem("elements", JSON.stringify(elements));
-    }
-})
+}})
 
 
 // function for dropdown 
@@ -150,4 +139,3 @@ filter.addEventListener("click", (e) => {
 
      })
 })
-
