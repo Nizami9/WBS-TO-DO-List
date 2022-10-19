@@ -5,7 +5,6 @@ const editBtnCreator = () => {
     // here comes the logic for edit 
 
     editBtn.addEventListener("dblclick", function () {
-        localStorage.setItem('todos', JSON.stringify(todos));
 
         toDoList.contentEditable = true;
 
@@ -15,9 +14,6 @@ const editBtnCreator = () => {
 
     editBtn.addEventListener("click", function () {
         toDoList.contentEditable = false;
-        localStorage.setItem('todos', JSON.stringify(todos));
-
     });
     return editBtn;
 }
-
