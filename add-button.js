@@ -1,3 +1,8 @@
+var elements = [];
+window.onload = function() {
+  if (JSON.parse(localStorage.getItem("elements")) != null)
+    elements = JSON.parse(localStorage.getItem("elements"));
+  console.log(elements);
 
 const toDoButton = document.querySelector('.toDoButton');
 const toDoInput = document.querySelector('.toDoInput')
@@ -23,11 +28,16 @@ const doneBtnCreator = (e) => {
     doneBtn.innerHTML = '<i class="fa ">&#xf00c;</i>';
      doneBtn.className="done-btn";
     doneBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         const doneItem = e.target.parentElement.parentElement;
         doneItem.classList.toggle="done";
         doneItem.style.opacity = '40%';
         doneItem.style.textDecorationLine = "line-through";
-        
+        if (localStorage.getItem("elements") == null) {
+            localStorage.setItem("elements", JSON.stringify(elements));
+          } else {
+            localStorage.setItem("elements", JSON.stringify(elements));
+          }
     });
     return doneBtn;
 }
@@ -64,6 +74,12 @@ const deleteBtnCreator = () => {
         const deletedItem = e.target.parentElement.parentElement;
         toDoList.removeChild(deletedItem);
     });
+    elements.splice(index, 1);
+  if (localStorage.getItem("elements") == null) {
+    localStorage.setItem("elements", JSON.stringify(elements));
+  } else {
+    localStorage.setItem("elements", JSON.stringify(elements));
+  }
     return deleteBtn;
 }
 
@@ -88,7 +104,13 @@ toDoButton.addEventListener("click", (e) => {
     toDoList.appendChild(div);
     console.log(div);
     toDoInput.value = '';
-
+if (document.querySelector(".addTxt").value.trim() != "") {
+    elements.push(document.querySelector(".addTxt").value.trim());
+    if (localStorage.getItem("elements") == null) {
+      localStorage.setItem("elements", JSON.stringify(elements));
+    } else {
+      localStorage.setItem("elements", JSON.stringify(elements));
+    }
 })
 
 
