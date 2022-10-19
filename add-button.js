@@ -128,4 +128,3 @@ filter.addEventListener("click", (e) => {
 
      })
 })
-
