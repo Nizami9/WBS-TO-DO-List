@@ -1,31 +1,23 @@
-var elements = [];
-window.onload = function() {
-  if (JSON.parse(localStorage.getItem("elements")) != null)
-    elements = JSON.parse(localStorage.getItem("elements"));
-  console.log(elements);
-};
-function addElement() {
-  if (document.querySelector(".addTxt").value.trim() != "") {
-    elements.push(document.querySelector(".addTxt").value.trim());
-    if (localStorage.getItem("elements") == null) {
-      localStorage.setItem("elements", JSON.stringify(elements));
-    } else {
-      localStorage.setItem("elements", JSON.stringify(elements));
-    }
-  }
+const li = document.querySelector('li')
+console.log(todo)
+
+const handleSubmit = (e) => {
+    e.preventDefault()
+
+    // CHANGE VALUE OF H1 
+    input.innerHTML = input.value;
+
+    // SAVE IN LOCAL STORAGE
+    localStorage.setItem("input", input.value)
+    console.log(li)
 }
-function del(index) {
-  elements.splice(index, 1);
-  if (localStorage.getItem("elements") == null) {
-    localStorage.setItem("elements", JSON.stringify(elements));
-  } else {
-    localStorage.setItem("elements", JSON.stringify(elements));
-  }
+
+const handleLoad = () => {
+    localStorage.getItem('input') ? input.innerHTML = localStorage.getItem('input') : input.innerHTML = ''
+    localStorage.getItem('ul') ? ul.innerHTML = localStorage.getItem('ul') : ul.innerHTML = ''
+
 }
-function strike(index) {
-  if (localStorage.getItem("elements") == null) {
-    localStorage.setItem("elements", JSON.stringify(elements));
-  } else {
-    localStorage.setItem("elements", JSON.stringify(elements));
-  }
-}
+
+handleLoad()
+
+form.addEventListener('submit', handleSubmit)

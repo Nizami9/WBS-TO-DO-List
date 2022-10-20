@@ -1,13 +1,11 @@
-
 const toDoButton = document.querySelector('.toDoButton');
 const toDoInput = document.querySelector('.toDoInput')
 const toDoList = document.querySelector('.toDoList')
 //const editBtn = document.querySelector('.toDoList')
 const filter=document.querySelector(".toDoFilter")
-
-
-
-
+const form = document.querySelector('.form')
+const submit = document.querySelector('.submit')
+let todos = [];
 
 // Done button
 const doneBtnCreator = (e) => {
@@ -68,28 +66,83 @@ const deleteBtnCreator = () => {
 }
 
 
-
 toDoButton.addEventListener("click", (e) => {
     e.preventDefault();
+
     if (!toDoInput.value) {
         alert("Enter Something !");
         return;
     }
     const div = document.createElement("div");
-    const li = document.createElement("li")
-    li.innerHTML = toDoInput.value;
+    const li = document.createElement("li");
+    let newToDo=toDoInput.value;
+
     div.className = "todo";
-    li.className = "todo-item"
+    li.className = "todo-item";
+    li.innerHTML = newToDo;
+    localStorage.setItem('todos', newToDo);
+console.log(newToDo);
 
     div.appendChild(li);
     div.appendChild(doneBtnCreator(e));
     div.appendChild(editBtnCreator());
     div.appendChild(deleteBtnCreator());
     toDoList.appendChild(div);
-    console.log(div);
-    toDoInput.value = '';
 
+    console.log(div);
+
+    const handleLoad = () => {
+        localStorage.getItem('toDoInput') ? li.innerHTML = localStorage.getItem('toDoInput') : li.innerHTML = ''
+    }
+
+    toDoInput.value = '';
+    handleLoad();
 })
+
+// toDoButton.addEventListener("click", (e) => {
+
+//     div.appendChild(li);
+//     div.appendChild(doneBtnCreator(e));
+//     div.appendChild(editBtnCreator());
+//     div.appendChild(deleteBtnCreator());
+//     toDoList.appendChild(div);
+//     localStorage.setItem("todos", toDoInput.value)
+
+//     const handleLoad = () => {
+//         localStorage.getItem('todos') ? li.innerHTML = localStorage.getItem('todos') : toDoList.innerHTML = ''
+//     }
+
+//     handleLoad();
+//     toDoInput.value = '';
+// })
+
+form.addEventListener('click', toDoButton)
+// toDoButton.addEventListener("click", (e) => {
+//     e.preventDefault();
+
+//     if (!toDoInput.value) {
+//         alert("Enter Something !");
+//         return;
+//     }
+//     const div = document.createElement("div");
+//     const li = document.createElement("li")
+//     div.className = "todo";
+//     li.className = "todo-item";
+//     let newToDo = toDoInput.value;
+//     //todos.push(newToDo)
+//     //localStorage.setItem('todos',JSON.stringify(todos));
+//     localStorage.setItem(newToDo)
+//     div.appendChild(li);
+//     div.appendChild(doneBtnCreator(e));
+//     div.appendChild(editBtnCreator());
+//     div.appendChild(deleteBtnCreator());
+//     toDoList.appendChild(div);
+
+//     let getValue=localStorage.getItem('newToDo');
+//     li.innerHTML = getValue;
+//     console.log(div);
+//     toDoInput.value = '';
+// })
 
 
 // function for dropdown 
@@ -128,3 +181,9 @@ filter.addEventListener("click", (e) => {
 
      })
 })
+
+
+// const handleLoad = (e) => {
+//     localStorage.getItem('input') ? li.innerHTML = localStorage.getItem('input') : li.innerHTML = ''
+// }
+// handleLoad()
