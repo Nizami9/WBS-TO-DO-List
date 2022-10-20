@@ -5,7 +5,6 @@ const toDoList = document.querySelector('.toDoList')
 const filter=document.querySelector(".toDoFilter")
 const form = document.querySelector('.form')
 const submit = document.querySelector('.submit')
-let todos = [];
 
 // Done button
 const doneBtnCreator = (e) => {
@@ -66,6 +65,38 @@ const deleteBtnCreator = () => {
 }
 
 
+const handleLoad = (e) => {
+   
+    // window.addEventListener("beforeunload", function(e){
+    //     Storage.clear()
+    //  }, false);
+   
+ 
+    const lsArray=JSON.parse(localStorage.getItem('todos'));
+
+    if(lsArray.length>0){
+   for(let i=0;i<lsArray.length;i++) {
+      const div = document.createElement("div");
+      div.className = "todo";
+      const li = document.createElement("li")
+      li.className = "todo-item";
+      let getNewToDo=lsArray[i].newToDo;
+      li.innerHTML = getNewToDo;
+      console.log(getNewToDo);
+      div.appendChild(li);
+      div.appendChild(doneBtnCreator(e));
+      div.appendChild(editBtnCreator());
+      div.appendChild(deleteBtnCreator());
+      toDoList.appendChild(div);
+      
+   }
+ }
+//  if(window.closed===true) {
+//     localStorage.clear();
+//     }
+}
+
+let todos=[];
 toDoButton.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -74,29 +105,25 @@ toDoButton.addEventListener("click", (e) => {
         return;
     }
     const div = document.createElement("div");
-    const li = document.createElement("li");
-    let newToDo=toDoInput.value;
-
+    const li = document.createElement("li")
     div.className = "todo";
     li.className = "todo-item";
-    li.innerHTML = newToDo;
-    localStorage.setItem('todos', newToDo);
-console.log(newToDo);
-
+    li.innerHTML = toDoInput.value;
+    
+    const newEntry={
+         newToDo:toDoInput.value,
+         done:false
+    }
+    todos.push(newEntry);
+    localStorage.setItem('todos',JSON.stringify(todos));
+    
     div.appendChild(li);
     div.appendChild(doneBtnCreator(e));
     div.appendChild(editBtnCreator());
     div.appendChild(deleteBtnCreator());
     toDoList.appendChild(div);
-
     console.log(div);
-
-    const handleLoad = () => {
-        localStorage.getItem('toDoInput') ? li.innerHTML = localStorage.getItem('toDoInput') : li.innerHTML = ''
-    }
-
     toDoInput.value = '';
-    handleLoad();
 })
 
 // toDoButton.addEventListener("click", (e) => {
