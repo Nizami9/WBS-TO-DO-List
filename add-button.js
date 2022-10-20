@@ -66,14 +66,6 @@ const deleteBtnCreator = () => {
 
 
 const handleLoad = (e) => {
-   
-    // window.addEventListener("beforeunload", function(e){
-    //     Storage.clear()
-    //  }, false);
-   
- 
-    const lsArray=JSON.parse(localStorage.getItem('todos'));
-
     if(lsArray.length>0){
    for(let i=0;i<lsArray.length;i++) {
       const div = document.createElement("div");
@@ -91,15 +83,12 @@ const handleLoad = (e) => {
       
    }
  }
-//  if(window.closed===true) {
-//     localStorage.clear();
-//     }
 }
 
-let todos=[];
+
+
 toDoButton.addEventListener("click", (e) => {
     e.preventDefault();
-
     if (!toDoInput.value) {
         alert("Enter Something !");
         return;
@@ -110,13 +99,6 @@ toDoButton.addEventListener("click", (e) => {
     li.className = "todo-item";
     li.innerHTML = toDoInput.value;
     
-    const newEntry={
-         newToDo:toDoInput.value,
-         done:false
-    }
-    todos.push(newEntry);
-    localStorage.setItem('todos',JSON.stringify(todos));
-    
     div.appendChild(li);
     div.appendChild(doneBtnCreator(e));
     div.appendChild(editBtnCreator());
@@ -125,52 +107,6 @@ toDoButton.addEventListener("click", (e) => {
     console.log(div);
     toDoInput.value = '';
 })
-
-// toDoButton.addEventListener("click", (e) => {
-
-//     div.appendChild(li);
-//     div.appendChild(doneBtnCreator(e));
-//     div.appendChild(editBtnCreator());
-//     div.appendChild(deleteBtnCreator());
-//     toDoList.appendChild(div);
-//     localStorage.setItem("todos", toDoInput.value)
-
-//     const handleLoad = () => {
-//         localStorage.getItem('todos') ? li.innerHTML = localStorage.getItem('todos') : toDoList.innerHTML = ''
-//     }
-
-//     handleLoad();
-//     toDoInput.value = '';
-// })
-
-form.addEventListener('click', toDoButton)
-// toDoButton.addEventListener("click", (e) => {
-//     e.preventDefault();
-
-//     if (!toDoInput.value) {
-//         alert("Enter Something !");
-//         return;
-//     }
-//     const div = document.createElement("div");
-//     const li = document.createElement("li")
-//     div.className = "todo";
-//     li.className = "todo-item";
-//     let newToDo = toDoInput.value;
-//     //todos.push(newToDo)
-//     //localStorage.setItem('todos',JSON.stringify(todos));
-//     localStorage.setItem(newToDo)
-//     div.appendChild(li);
-//     div.appendChild(doneBtnCreator(e));
-//     div.appendChild(editBtnCreator());
-//     div.appendChild(deleteBtnCreator());
-//     toDoList.appendChild(div);
-
-//     let getValue=localStorage.getItem('newToDo');
-//     li.innerHTML = getValue;
-//     console.log(div);
-//     toDoInput.value = '';
-// })
-
 
 // function for dropdown 
 filter.addEventListener("click", (e) => {
@@ -208,9 +144,3 @@ filter.addEventListener("click", (e) => {
 
      })
 })
-
-
-// const handleLoad = (e) => {
-//     localStorage.getItem('input') ? li.innerHTML = localStorage.getItem('input') : li.innerHTML = ''
-// }
-// handleLoad()
