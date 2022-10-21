@@ -123,17 +123,13 @@
     border: none;
     background: #ff6f47;
     color: white;
-    padding: 0.2rem;
+    padding: 0.7rem;
     border :1px solid white;
   }
   .done{
     opacity: 50%;
   }
-  .done{
-    opacity: 50%;
-    text-decoration: line-through;
-  }
-
+  
   select {
     -webkit-appearence: none;
     -moz-appearance: none;

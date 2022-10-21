@@ -6,29 +6,15 @@ const toDoInput = document.querySelector('.toDoInput')
 const toDoList = document.querySelector('.toDoList')
 const filter=document.querySelector('.toDoFilter')
 let todos=[],lsArray=[];
-
-
-
-
-
-// Done button
-const doneBtnCreator = (e,index) => {
-     
-
-//const editBtn = document.querySelector('.toDoList')
-const filter=document.querySelector(".toDoFilter")
 const form = document.querySelector('.form')
 const submit = document.querySelector('.submit')
 
-// Done button
 
-const doneBtnCreator = (e,index) => {
-    //  if(e.target.style.textDecorationLine === "line-through" ) {
-    //     console.log('inside done'+e);
-    //     e.target.style.opacity = '0%';
-    //     e.target.style.textDecorationLine = "none";
-        
-    //  }
+
+// ------------- Done button to local storage
+
+const doneBtnCreator = (index) => {
+ 
     const doneBtn = document.createElement('button');
 
     doneBtn.innerHTML = '<i class="fa">&#xf00c;</i>';
@@ -43,9 +29,7 @@ const doneBtnCreator = (e,index) => {
             doneItem.style.opacity = '40%';
             doneItem.style.textDecorationLine = "line-through";
             doneItem.className="done";
-            
-
-         }
+          }
         
         doneItem.style.opacity = '40%';
         doneItem.style.textDecorationLine = "line-through";
@@ -63,34 +47,10 @@ const doneBtnCreator = (e,index) => {
     });
     return doneBtn;
 }
-}
 
 
-// // Edit Button 
-
-
-// const editBtnCreator = () => {
-//     const editBtn = document.createElement('button');
-//     editBtn.innerHTML = "<i class='fas fa-pen edit-btn '></i>"
-
-//     // here comes the logic for edit 
-
-
-
-
-
-//     editBtn.addEventListener("click", function () {
-//         toDoList.contentEditable = false;
-//     });
-
-
-//     return editBtn;
-// }
-
-
-
-//Delete Button
-const deleteBtnCreator = (e,index) => {
+//Delete from local
+const deleteBtnCreator = (index) => {
     const deleteBtn = document.createElement('button');
     deleteBtn.className = "delete-btn";
     deleteBtn.innerHTML = '<i  class="fa " >&#xf014;</i>';
@@ -118,14 +78,6 @@ const deleteBtnCreator = (e,index) => {
 
 // Done button
 const doneBtnCreatorFirst = (e) => {
-
-    //  if(e.target.style.textDecorationLine === "line-through" ) {
-    //     console.log('inside done'+e);
-    //     e.target.style.opacity = '0%';
-    //     e.target.style.textDecorationLine = "none";
-
-    //  }
-
     const doneBtn = document.createElement('button');
     doneBtn.innerHTML = '<i class="fa ">&#xf00c;</i>';
     doneBtn.className='done-btn '
@@ -156,10 +108,14 @@ const deleteBtnCreatorFirst = () => {
 const handleLoad = () => {
   
     
-    if (!localStorage.getItem("todos") ) return;
+    if (!localStorage.getItem("todos") )
+    {  console.log("inside toods empty")
+        return;
+    } 
+    
     todos=localStorage.getItem('todos')
     const lsArray=JSON.parse(localStorage.getItem('todos'));
-
+    console.log(lsArray)
    // if(lsArray.length===0) return;
     if(lsArray.length>0){
    for(let i=0;i<lsArray.length;i++) {
@@ -169,12 +125,14 @@ const handleLoad = () => {
       li.className = "todo-item";
       let getNewToDo=lsArray[i].newToDo;
       li.innerHTML = getNewToDo;
+     console.log("this is getNew to")
       console.log(getNewToDo);
       div.appendChild(li);
-      div.appendChild(doneBtnCreator(e,i));
-      div.appendChild(editBtnCreator(e));
-      div.appendChild(deleteBtnCreator(e,i));
-
+      div.appendChild(doneBtnCreator(i));
+      div.appendChild(editBtnCreator());
+      div.appendChild(deleteBtnCreator(i));
+      console.log(div);
+      console.log(toDoList)
       toDoList.appendChild(div);
    }
  }
@@ -188,30 +146,16 @@ toDoButton.addEventListener("click", (e) => {
         alert("Enter Something !");
         return;
     }
-    //  if (localStorage.getItem("todos")==null ) {
-    //     todos=[];
-    //     lsArray=[];
-    // }
-    // else
-    // {
-    // todos=localStorage.getItem('todos');
-    // lsArray=JSON.parse(todos);
-
-    // }
-     
+   
     if (localStorage.getItem("todos")==null ) 
     {  
        
         todos=[];
     }
     else {
-            
              todos=localStorage.getItem('todos');
              lsArray=JSON.parse(todos);
-        
     } 
-
-
     const div = document.createElement("div");
     const li = document.createElement("li")
     div.className = "todo";
