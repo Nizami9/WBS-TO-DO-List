@@ -3,7 +3,7 @@
 const toDoButton = document.querySelector('.toDoButton');
 const toDoInput = document.querySelector('.toDoInput')
 const toDoList = document.querySelector('.toDoList')
-let todos=[];
+let todos=[],lsArray=[];
 
 
 
@@ -17,7 +17,8 @@ const doneBtnCreator = (e,index) => {
         
     //  }
     const doneBtn = document.createElement('button');
-    doneBtn.innerHTML = '<i class="fa done-btn ">&#xf00c;</i>';
+    doneBtn.innerHTML = '<i class="fa">&#xf00c;</i>';
+    doneBtn.className='done-btn'
     const lsArray=JSON.parse(localStorage.getItem('todos'));
        
     doneBtn.addEventListener('click', (e) => {
@@ -143,11 +144,16 @@ toDoButton.addEventListener("click", (e) => {
         return;
 
     }
-    if (localStorage.getItem("todos")==null ) 
-     todos=[];
+    if (localStorage.getItem("todos")==null ) {
+        todos=[];
+        lsArray=[];
+    }
+     
     else
+    {
     todos=localStorage.getItem('todos');
-
+    lsArray=JSON.parse(todos);
+    }
     const div = document.createElement("div");
     const li = document.createElement("li")
     div.className = "todo";
@@ -159,9 +165,9 @@ toDoButton.addEventListener("click", (e) => {
          done:false
     }
    // todos.push(newEntry);
-    let lsArray=[];
+    //let lsArray=[];
    
-    lsArray= JSON.parse(todos);
+    //lsArray= JSON.parse(todos);
     lsArray.push(newEntry);
     localStorage.setItem('todos',JSON.stringify(lsArray));
     
