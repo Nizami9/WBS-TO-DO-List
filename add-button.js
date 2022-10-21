@@ -1,8 +1,10 @@
+
+
+
 const toDoButton = document.querySelector('.toDoButton');
 const toDoInput = document.querySelector('.toDoInput')
 const toDoList = document.querySelector('.toDoList')
-
-let todos=[];
+let todos=[],lsArray=[];
 
 
 
@@ -16,20 +18,22 @@ const form = document.querySelector('.form')
 const submit = document.querySelector('.submit')
 
 // Done button
-const doneBtnCreator = (e) => {
 
+const doneBtnCreator = (e,index) => {
+     
 
     //  if(e.target.style.textDecorationLine === "line-through" ) {
     //     console.log('inside done'+e);
     //     e.target.style.opacity = '0%';
     //     e.target.style.textDecorationLine = "none";
-
+        
     //  }
     const doneBtn = document.createElement('button');
 
-    doneBtn.innerHTML = '<i class="fa ">&#xf00c;</i>';
-     doneBtn.className="done-btn";
-
+    doneBtn.innerHTML = '<i class="fa">&#xf00c;</i>';
+    doneBtn.className='done-btn'
+    const lsArray=JSON.parse(localStorage.getItem('todos'));
+       
     doneBtn.addEventListener('click', (e) => {
         
         const doneItem = e.target.parentElement.parentElement;
@@ -63,15 +67,13 @@ const doneBtnCreator = (e) => {
 
 // // Edit Button 
 
+
 // const editBtnCreator = () => {
 //     const editBtn = document.createElement('button');
 //     editBtn.innerHTML = "<i class='fas fa-pen edit-btn '></i>"
 
 //     // here comes the logic for edit 
 
-//     editBtn.addEventListener("dblclick", function () {
-//         toDoList.contentEditable = true;
-//     });
 
 
 
@@ -79,6 +81,7 @@ const doneBtnCreator = (e) => {
 //     editBtn.addEventListener("click", function () {
 //         toDoList.contentEditable = false;
 //     });
+
 
 //     return editBtn;
 // }
@@ -163,13 +166,24 @@ const handleLoad = (e) => {
 }
 
 
-
 toDoButton.addEventListener("click", (e) => {
     e.preventDefault();
 
     if (!toDoInput.value) {
         alert("Enter Something !");
         return;
+
+
+    }
+    if (localStorage.getItem("todos")==null ) {
+        todos=[];
+        lsArray=[];
+    }
+     
+    else
+    {
+    todos=localStorage.getItem('todos');
+    lsArray=JSON.parse(todos);
 
     }
     if (localStorage.getItem("todos")==null ) 
@@ -188,10 +202,13 @@ toDoButton.addEventListener("click", (e) => {
          done:false
     }
    // todos.push(newEntry);
-    let lsArray=[];
-    lsArray= JSON.parse(todos);
+
+    //let lsArray=[];
+   
+    //lsArray= JSON.parse(todos);
     lsArray.push(newEntry);
     localStorage.setItem('todos',JSON.stringify(lsArray));
+    
 
     div.appendChild(li);
     div.appendChild(doneBtnCreator(e));
@@ -200,6 +217,7 @@ toDoButton.addEventListener("click", (e) => {
     toDoList.appendChild(div);
     
     toDoInput.value = '';
+
 
 })
 
@@ -238,5 +256,6 @@ filter.addEventListener("click", (e) => {
                 }
 
      })
+
 
 })
