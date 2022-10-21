@@ -103,11 +103,12 @@
   
   /*   buttons in the list */
   .done-btn {
-    font-size:3em;
+    font-size:1.5em;
     border: none;
     background: #ff6f47;
     color: white;
     padding: 0.2rem;
+    border :1px solid white;
   }
   .delete-btn{
      font-size:1.5em;
@@ -115,13 +116,18 @@
      background: #ff6f47;
     color: white;
     padding: 0.2rem;
+    border :1px solid rgb(224, 174, 174);
   }
   .edit-btn{
-    font-size:2.7em;
+    font-size:1.5em;
     border: none;
     background: #ff6f47;
     color: white;
     padding: 0.2rem;
+    border :1px solid white;
+  }
+  .done{
+    opacity: 50%;
   }
   .done{
     opacity: 50%;

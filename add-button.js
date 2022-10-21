@@ -1,7 +1,7 @@
-
 const toDoButton = document.querySelector('.toDoButton');
 const toDoInput = document.querySelector('.toDoInput')
 const toDoList = document.querySelector('.toDoList')
+
 let todos=[];
 
 
@@ -9,19 +9,31 @@ let todos=[];
 // Done button
 const doneBtnCreator = (e,index) => {
      
+
+//const editBtn = document.querySelector('.toDoList')
+const filter=document.querySelector(".toDoFilter")
+const form = document.querySelector('.form')
+const submit = document.querySelector('.submit')
+
+// Done button
+const doneBtnCreator = (e) => {
+
+
     //  if(e.target.style.textDecorationLine === "line-through" ) {
     //     console.log('inside done'+e);
     //     e.target.style.opacity = '0%';
     //     e.target.style.textDecorationLine = "none";
-        
+
     //  }
     const doneBtn = document.createElement('button');
-    doneBtn.innerHTML = '<i class="fa done-btn ">&#xf00c;</i>';
-    const lsArray=JSON.parse(localStorage.getItem('todos'));
-       
+
+    doneBtn.innerHTML = '<i class="fa ">&#xf00c;</i>';
+     doneBtn.className="done-btn";
+
     doneBtn.addEventListener('click', (e) => {
         
         const doneItem = e.target.parentElement.parentElement;
+
         if(lsArray[index].done==='true'){
             doneItem.style.opacity = '40%';
             doneItem.style.textDecorationLine = "line-through";
@@ -42,18 +54,30 @@ const doneBtnCreator = (e,index) => {
         });
        
 
+
     });
     return doneBtn;
 }
 
 
 // // Edit Button 
+
 // const editBtnCreator = () => {
 //     const editBtn = document.createElement('button');
 //     editBtn.innerHTML = "<i class='fas fa-pen edit-btn '></i>"
 
 //     // here comes the logic for edit 
 
+//     editBtn.addEventListener("dblclick", function () {
+//         toDoList.contentEditable = true;
+//     });
+
+
+
+
+//     editBtn.addEventListener("click", function () {
+//         toDoList.contentEditable = false;
+//     });
 
 //     return editBtn;
 // }
@@ -110,6 +134,7 @@ const handleLoad = (e) => {
  
     const lsArray=JSON.parse(localStorage.getItem('todos'));
 
+
     if(lsArray.length>0){
    for(let i=0;i<lsArray.length;i++) {
       const div = document.createElement("div");
@@ -120,18 +145,22 @@ const handleLoad = (e) => {
       li.innerHTML = getNewToDo;
       console.log(getNewToDo);
       div.appendChild(li);
+
       div.appendChild(doneBtnCreator(e,i));
       div.appendChild(editBtnCreator(e));
       div.appendChild(deleteBtnCreator(e,i));
+
       toDoList.appendChild(div);
       
    }
  }
+
 //   if(window.closed===true) {
 //     todos=[];
 //      localStorage.clear();
 //      }
 }
+
 
 
 toDoButton.addEventListener("click", (e) => {
@@ -162,7 +191,7 @@ toDoButton.addEventListener("click", (e) => {
     lsArray= JSON.parse(todos);
     lsArray.push(newEntry);
     localStorage.setItem('todos',JSON.stringify(lsArray));
-    
+
     div.appendChild(li);
     div.appendChild(doneBtnCreator(e));
     div.appendChild(editBtnCreator());
@@ -170,4 +199,43 @@ toDoButton.addEventListener("click", (e) => {
     toDoList.appendChild(div);
     
     toDoInput.value = '';
+
+})
+
+// function for dropdown 
+filter.addEventListener("click", (e) => {
+     e.preventDefault();
+     const todoItems= toDoList.childNodes;
+     console.log(todoItems);
+
+     todoItems.forEach(item => {
+        console.log("inside forEach ,,,,")
+        console.log(item.classList);
+        console.log(item.classList.toggle);
+           switch(e.target.value){
+             case ('all') : item.style.display='flex';
+                            break;
+                     
+             case ('done') : 
+                if(item.classList.toggle === 'done'){
+                    item.style.display='flex';
+                    break;
+                }
+                else{
+                    item.style.display='none';
+                    break;
+                }
+            case ('inprogress'):   
+                if(item.classList.toggle === 'done'){
+                    item.style.display='none';
+                    break;
+            }
+            else{
+                    item.style.display='flex';
+                    break;
+            } 
+                }
+
+     })
+
 })
