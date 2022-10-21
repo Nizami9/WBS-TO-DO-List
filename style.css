@@ -163,7 +163,7 @@
   }
   
   .showFilter:hover::after {
-    background: white;
+    background: #ff6f47;
     color: #ff6f47;
   }
   
