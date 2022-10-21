@@ -129,7 +129,11 @@
   .done{
     opacity: 50%;
   }
-  
+  .done{
+    opacity: 50%;
+    text-decoration: line-through;
+  }
+
   select {
     -webkit-appearence: none;
     -moz-appearance: none;
