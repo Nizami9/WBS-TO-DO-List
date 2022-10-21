@@ -4,7 +4,10 @@
 const toDoButton = document.querySelector('.toDoButton');
 const toDoInput = document.querySelector('.toDoInput')
 const toDoList = document.querySelector('.toDoList')
+const filter=document.querySelector('.toDoFilter')
 let todos=[],lsArray=[];
+
+
 
 
 
@@ -20,8 +23,6 @@ const submit = document.querySelector('.submit')
 // Done button
 
 const doneBtnCreator = (e,index) => {
-     
-
     //  if(e.target.style.textDecorationLine === "line-through" ) {
     //     console.log('inside done'+e);
     //     e.target.style.opacity = '0%';
@@ -115,30 +116,51 @@ const deleteBtnCreator = (e,index) => {
     return deleteBtn;
 }
 
+// Done button
+const doneBtnCreatorFirst = (e) => {
+
+    //  if(e.target.style.textDecorationLine === "line-through" ) {
+    //     console.log('inside done'+e);
+    //     e.target.style.opacity = '0%';
+    //     e.target.style.textDecorationLine = "none";
+
+    //  }
+
+    const doneBtn = document.createElement('button');
+    doneBtn.innerHTML = '<i class="fa ">&#xf00c;</i>';
+    doneBtn.className='done-btn '
+
+    doneBtn.addEventListener('click', (e) => {
+        const doneItem = e.target.parentElement.parentElement;
+        doneItem.style.opacity = '40%';
+        doneItem.style.textDecorationLine = "line-through";
+    });
+    return doneBtn;
+}
+
+//Delete Button
+const deleteBtnCreatorFirst = () => {
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = "delete-btn";
+    deleteBtn.innerHTML = '<i  class="fa " >&#xf014;</i>';
+    console.log(deleteBtn);
+
+    deleteBtn.addEventListener('click', (e) => {
+        const deletedItem = e.target.parentElement.parentElement;
+        toDoList.removeChild(deletedItem);
+    });
+    return deleteBtn;
+}
 
 
-
-const handleLoad = (e) => {
+const handleLoad = () => {
+  
     
-    // window.addEventListener("beforeunload", function(e){
-    //     Storage.clear()
-    //  }, false);
-
     if (!localStorage.getItem("todos") ) return;
     todos=localStorage.getItem('todos')
-
-    // if(localStorage.getItem('todos')){
-    //     todos=[]; 
-    // }
-    // else {
-    //     todos=localStorage.getItem('todos')
-
-        
-    // }
- 
     const lsArray=JSON.parse(localStorage.getItem('todos'));
 
-
+   // if(lsArray.length===0) return;
     if(lsArray.length>0){
    for(let i=0;i<lsArray.length;i++) {
       const div = document.createElement("div");
@@ -149,20 +171,13 @@ const handleLoad = (e) => {
       li.innerHTML = getNewToDo;
       console.log(getNewToDo);
       div.appendChild(li);
-
       div.appendChild(doneBtnCreator(e,i));
       div.appendChild(editBtnCreator(e));
       div.appendChild(deleteBtnCreator(e,i));
 
       toDoList.appendChild(div);
-      
    }
  }
-
-//   if(window.closed===true) {
-//     todos=[];
-//      localStorage.clear();
-//      }
 }
 
 
@@ -172,54 +187,54 @@ toDoButton.addEventListener("click", (e) => {
     if (!toDoInput.value) {
         alert("Enter Something !");
         return;
-
-
     }
-    if (localStorage.getItem("todos")==null ) {
-        todos=[];
-        lsArray=[];
-    }
+    //  if (localStorage.getItem("todos")==null ) {
+    //     todos=[];
+    //     lsArray=[];
+    // }
+    // else
+    // {
+    // todos=localStorage.getItem('todos');
+    // lsArray=JSON.parse(todos);
+
+    // }
      
-    else
-    {
-    todos=localStorage.getItem('todos');
-    lsArray=JSON.parse(todos);
-
-    }
     if (localStorage.getItem("todos")==null ) 
-     todos=[];
-    else
-    todos=localStorage.getItem('todos');
+    {  
+       
+        todos=[];
+    }
+    else {
+            
+             todos=localStorage.getItem('todos');
+             lsArray=JSON.parse(todos);
+        
+    } 
+
 
     const div = document.createElement("div");
     const li = document.createElement("li")
     div.className = "todo";
     li.className = "todo-item";
     li.innerHTML = toDoInput.value;
-    
+    div.appendChild(li);
+    div.appendChild(doneBtnCreatorFirst(e));
+    div.appendChild(editBtnCreator(e));
+    div.appendChild(deleteBtnCreatorFirst());
+    toDoList.appendChild(div);
+     
     const newEntry={
-         newToDo:toDoInput.value,
-         done:false
-    }
-   // todos.push(newEntry);
-
-    //let lsArray=[];
-   
-    //lsArray= JSON.parse(todos);
+        newToDo:toDoInput.value,
+        done:false
+   }
     lsArray.push(newEntry);
     localStorage.setItem('todos',JSON.stringify(lsArray));
-    
-
-    div.appendChild(li);
-    div.appendChild(doneBtnCreator(e));
-    div.appendChild(editBtnCreator());
-    div.appendChild(deleteBtnCreator());
-    toDoList.appendChild(div);
     
     toDoInput.value = '';
 
 
 })
+
 
 // function for dropdown 
 filter.addEventListener("click", (e) => {
