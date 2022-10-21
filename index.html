@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-    integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="style.css" />
-  <title>To Do List</title>
-</head>
-<body>
-  <header>
-    <h1>Just {To Do} List</h1>
-    <img src="./img/nike.png" alt="">
-  </header>
-
-  <form>
-    <input type="text" class="toDoInput" />
-    <button class="toDoButton" type="submit">
-      <i class="fas fa-plus-square"></i>
-    </button>
-    <div class="showFilter">
-      <select name="todos" class="toDoFilter">
-        <option  value="all">All</option>
-        <option  value="done">Done</option>
-        <option value="inprogress">In Progress</option>
-      </select>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous"/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <title>To Do List</title>
+  </head>
+  <body onload="handleLoad()">
+    <header>
+      <h1>Just {To Do} List</h1>
+      <!-- <img src="/img/nike.png" alt=""> -->
+    </header>
+    
+    <form class="toDoForm">
+      <input type="text" class="toDoInput" />
+      <button class="toDoButton" type="submit">
+        <i class="fas fa-plus-square"></i>
+      </button>
+      <div class="showFilter">
+        <select name="todos" class="toDoFilter">
+          <option value="all">All</option>
+          <option value="Done">Done</option>
+          <option value="inprogress">In Progress</option>
+        </select>
+      </div>
+    </form>
+    <div class="toDoContainer">
+      <ul class="toDoList"></ul>
     </div>
-  </form>
-  <div class="toDoContainer">
-    <ul class="toDoList"></ul>
-  </div>
-
 <div class="copyright">Photo by <a href="https://unsplash.com/@andyjh07?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Andy Holmes</a> on <a href="https://unsplash.com/s/photos/universe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
-  <script src="/kingsley.js"></script>
-  <script src="add-button.js">
-
-  </script>
-</body>
+    <script src="add-button.js">
+      
+    </script>
+    <script src="kingsley.js"></script>
+    <script src="localStorage.js"></script>
+  </body>
 </html>
+
 
